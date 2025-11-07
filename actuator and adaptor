@@ -1,0 +1,10 @@
+# Actuator command adapter
+def send_signal_update(intersection, green):
+    command = {"intersection": intersection, "green_duration": green}
+    requests.post("http://controller/api/update_signal", json=command)
+
+# Dashboard frontend fetch (React/Leaflet uses this)
+@app.route("/links/<id>/status", methods=['GET'])
+def get_status(id):
+    status = fetch_from_db(id)
+    return jsonify(status)
