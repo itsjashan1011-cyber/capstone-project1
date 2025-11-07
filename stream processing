@@ -1,0 +1,13 @@
+from collections import deque
+import statistics, time
+
+window = deque(maxlen=6)  # 1-minute window (6x10s)
+while True:
+    event = get_from_kafka("traffic_data")  # pseudo-function
+    window.append(event['vehicle_count'])
+    avg_flow = statistics.mean(window)
+    store_to_timeseries_db({
+        "sensor": event['sensor_id'],
+        "timestamp": event['timestamp'],
+        "avg_flow": avg_flow
+    })
