@@ -1,0 +1,12 @@
+from kafka import KafkaProducer
+import json, time
+
+producer = KafkaProducer(
+    bootstrap_servers=['kafka-broker-1:9092'],
+    value_serializer=lambda v: json.dumps(v).encode('utf-8')
+)
+
+topic_name = "traffic_data.CHANDIGARH.CHD_45"
+producer.send(topic_name, validated_event)
+producer.flush()
+print("✅ Event published to Kafka topic:", topic_name)
