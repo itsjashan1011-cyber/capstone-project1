@@ -1,0 +1,11 @@
+# Pseudo Flask API endpoint (server-side)
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/upload', methods=['POST'])
+def upload_traffic_data():
+    data = request.get_json()
+    print("Received data from:", data['source'])
+    # Perform validation, store in DB, or trigger analytics pipeline
+    return jsonify({"status": "success"}), 200
