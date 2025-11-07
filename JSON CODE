@@ -1,0 +1,17 @@
+import json
+import requests
+
+# Example: Preprocessed traffic data
+traffic_data = {
+    "intersection_id": "CHD_45",
+    "timestamp": "2025-11-07T10:05:32Z",
+    "vehicle_count": 28,
+    "avg_speed_kmph": 42.7,
+    "lane_occupancy_percent": 64.3,
+    "detected_objects": [
+        {"type": "car", "count": 22},
+        {"type": "bus", "count": 2},
+        {"type": "bike", "count": 4}
+    ],
+    "source": "edge_device_cam_12"
+}
