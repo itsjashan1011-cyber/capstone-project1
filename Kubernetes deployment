@@ -1,0 +1,20 @@
+# Example Kubernetes Deployment (Flask ingestion service)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ingestion-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ingestion
+  template:
+    metadata:
+      labels:
+        app: ingestion
+    spec:
+      containers:
+      - name: ingestion
+        image: traffic/ingestion:latest
+        ports:
+        - containerPort: 5000
