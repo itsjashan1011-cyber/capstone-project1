@@ -1,0 +1,14 @@
+# Example LinkStatus model
+LinkStatus = {
+    "link_id": "LNK_23",
+    "timestamp": "2025-11-07T10:00:00Z",
+    "avg_speed": 38.4,
+    "flow": 20,
+    "occupancy": 63.2,
+    "congestion_level": "Medium"
+}
+
+# API to fetch link data
+@app.route('/links/<link_id>/status')
+def link_status(link_id):
+    return jsonify(fetch_from_db(link_id))
