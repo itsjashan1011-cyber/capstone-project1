@@ -1,0 +1,12 @@
+# Compute new signal plan based on predicted congestion
+from pulp import LpProblem, LpVariable, LpMinimize
+
+congestion = 0.75  # example from ML output
+green_time = LpVariable("green", 10, 90)
+prob = LpProblem("SignalOptimization", LpMinimize)
+prob += (1 - congestion) * green_time  # objective
+prob.solve()
+print("✅ Optimal green time:", green_time.value(), "seconds")
+
+# Send plan for simulation validation (SUMO API)
+requests.post("http://simulator/validate", json={"green_time": green_time.value()})
